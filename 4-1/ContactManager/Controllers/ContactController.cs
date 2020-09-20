@@ -18,12 +18,14 @@ namespace ContactManager.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "Add";
+            ViewBag.Categories = context.Categories.OrderBy(g => g.Name).ToList();
             return View("Edit", new Contact());
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
+            ViewBag.Categories = context.Categories.OrderBy(g => g.Name).ToList();
             var contact = context.Contacts.Find(id);
             return View(contact);
         }

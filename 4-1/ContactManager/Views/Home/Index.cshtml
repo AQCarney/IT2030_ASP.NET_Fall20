@@ -3,6 +3,7 @@
     ViewBag.Title = "Contact Manager";
 }
 
+
 <h2>Contact Manager</h2>
 
 <a asp-controller="Contact" asp-action="Add">Add Contact</a>
@@ -24,7 +25,7 @@
                 <td>@contact.Lname</td>
                 <td>@contact.Phone</td>
                 <td>@contact.Email</td>
-                <td>@contact.Category</td>
+                <td>@contact.Category.Name</td>
                 <td>
                     <a asp-controller="Contact" asp-action="Edit"
                        asp-route-id="@contact.ContactId">Edit</a>

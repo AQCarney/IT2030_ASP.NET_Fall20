@@ -8,8 +8,16 @@ namespace ContactManager.Models
             : base(options)
         { }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryId = "FR", Name = "Friend" },
+                new Category { CategoryId = "WK", Name = "Work" },
+                new Category { CategoryId = "FM", Name = "Family", }
+                );
+       
+        
             modelBuilder.Entity<Contact>().HasData(
                 new Contact
                 {
@@ -18,7 +26,7 @@ namespace ContactManager.Models
                     Lname = "Del Rio",
                     Phone = "555-987-6543",
                     Email = "delores@hotmail.com",
-                    Category = "Friend"
+                    CategoryId = "FR"
                 },
                 new Contact
                 {
@@ -27,7 +35,7 @@ namespace ContactManager.Models
                     Lname = "Herrera",
                     Phone = "555-456-7890",
                     Email = "efren@aol.com",
-                    Category = "Work"
+                    CategoryId = "WK"
                 },
                 new Contact
                 {
@@ -36,7 +44,7 @@ namespace ContactManager.Models
                     Lname = "Walton",
                     Phone = "555-123-4567",
                     Email = "MaryEllen@yahoo.com",
-                    Category = "Family"
+                    CategoryId = "FM"
                 }
                 );
         }

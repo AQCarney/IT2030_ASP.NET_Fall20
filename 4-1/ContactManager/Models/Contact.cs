@@ -14,6 +14,8 @@ namespace ContactManager.Models
         [Required(ErrorMessage = "Please enter an email address")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter a category")]
-        public string Category { get; set; }
+        public string CategoryId { get; set; }
+        public Category Category { get; set; }
+        public string Organization { get; set; }
     }
 }
