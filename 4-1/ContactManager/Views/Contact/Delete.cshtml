@@ -1,0 +1,13 @@
+﻿@model Contact
+@{ 
+    ViewBag.Title = "Delete Movie";
+}
+<h2>Confirm Delete</h2>
+<h3>Are you sure you want to delete @Model.Fname, @Model.Lname</h3>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ContactId" />
+    <button type="submit" class="btn btn-dark">Delete</button>
+    <a asp-controller="Home" asp-action="Index"
+       class="btn btn-dark">Cancel</a>
+</form>
