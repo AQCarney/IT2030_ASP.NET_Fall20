@@ -15,6 +15,14 @@ namespace ContactManager.Controllers
             context = ctx;
         }
         [HttpGet]
+        public IActionResult Details(int id)
+        {
+            ViewBag.Action = "Details";
+            ViewBag.Categories = context.Categories.OrderBy(g => g.Name).ToList();
+            var contact = context.Contacts.Find(id);
+            return View(contact);
+        }
+        [HttpGet]
         public IActionResult Add()
         {
             ViewBag.Action = "Add";
