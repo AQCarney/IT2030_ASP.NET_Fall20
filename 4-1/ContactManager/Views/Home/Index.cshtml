@@ -28,9 +28,12 @@
                 <td>@contact.Category.Name</td>
                 <td>
                     <a asp-controller="Contact" asp-action="Edit"
-                       asp-route-id="@contact.ContactId">Edit</a>
+                       asp-route-id="@contact.ContactId"
+                       asp-route-slug="@contact.Slug">Edit</a>
+
                     <a asp-controller="Contact" asp-action="Delete"
-                       asp-route-id="@contact.ContactId">Delete</a>
+                       asp-route-id="@contact.ContactId"
+                       asp-route-slug="@contact.Slug">Delete</a>
                 </td>
             </tr>
         }

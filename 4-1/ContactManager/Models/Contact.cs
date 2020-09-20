@@ -17,5 +17,8 @@ namespace ContactManager.Models
         public string CategoryId { get; set; }
         public Category Category { get; set; }
         public string Organization { get; set; }
+
+        public string Slug =>
+            Fname?.Replace(' ', '-').ToLower() + Lname?.Replace(' ', '-');
     }
 }
