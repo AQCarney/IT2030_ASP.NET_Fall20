@@ -5,7 +5,7 @@ namespace ContactManager.Models
     public class Contact
     {
         public int ContactId { get; set; }
-        [Required(ErrorMessage ="Please enter a first name")]
+        [Required(ErrorMessage = "Please enter a first name")]
         public string Fname { get; set; }
         [Required(ErrorMessage = "Please enter a last name")]
         public string Lname { get; set; }

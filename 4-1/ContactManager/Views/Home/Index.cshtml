@@ -1,5 +1,5 @@
 ﻿@model List<Contact>
-@{ 
+@{
     ViewBag.Title = "Contact Manager";
 }
 
@@ -19,19 +19,19 @@
     <tbody>
         @foreach (var contact in Model)
         {
-        <tr>
-            <td>@contact.Fname</td>
-            <td>@contact.Lname</td>
-            <td>@contact.Phone</td>
-            <td>@contact.Email</td>
-            <td>@contact.Category</td>
-            <td>
-                <a asp-controller="Contact" asp-action="Edit"
-                   asp-route-id="@contact.ContactId">Edit</a>
-                <a asp-controller="Contact" asp-action="Delete"
-                   asp-route-id="@contact.ContactId">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@contact.Fname</td>
+                <td>@contact.Lname</td>
+                <td>@contact.Phone</td>
+                <td>@contact.Email</td>
+                <td>@contact.Category</td>
+                <td>
+                    <a asp-controller="Contact" asp-action="Edit"
+                       asp-route-id="@contact.ContactId">Edit</a>
+                    <a asp-controller="Contact" asp-action="Delete"
+                       asp-route-id="@contact.ContactId">Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 
