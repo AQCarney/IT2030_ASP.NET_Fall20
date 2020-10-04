@@ -1,0 +1,25 @@
+﻿@model List<Question>
+@{ 
+    ViewBag.Title = "FAQs";
+}
+
+
+<a asp-controller="Question"></a>
+<table class="table ">
+    <thead>
+
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+        <tr>
+            <td>@question.Faq @question.Answer</td>
+            
+        </tr>
+        <tr>
+           <td>@question.Topic.TopicName @question.Category.CategoryName</td>
+          
+        </tr>
+        }
+    </tbody>
+</table>
