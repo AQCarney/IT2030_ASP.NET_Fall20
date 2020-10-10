@@ -1,0 +1,10 @@
+﻿body {
+    margin-top: 70px;
+
+    padding-right: 20px;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+
