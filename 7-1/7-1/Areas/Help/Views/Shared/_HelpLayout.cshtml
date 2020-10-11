@@ -37,12 +37,14 @@
       
     </header>
     <div class="container">
-        <div class="nav nav-tabs">
-            <a class="nav-link" href="/Home/Index">Home</a>
-            <a class="nav-link
-               @(controller == "Tutorial" && action == "Index" ? "active" : "")"
-               asp-controller="Tutorial" asp-action="Index">Tutorial</a>
-        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/Help/Tutorial/Page1">Tutorial</a>
+            </li>
+        </ul>
         <main>
 
 

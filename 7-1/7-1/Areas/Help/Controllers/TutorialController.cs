@@ -9,9 +9,19 @@ namespace _7_1.Areas.Help.Controllers
     [Area("Help")]
     public class TutorialController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            return RedirectToAction("Page1", "Tutorial");
+            if (id == "Page2")
+            {
+                return View("Page2");
+            }
+            else if (id == "Page3") {
+                return View("Page3");
+            }
+            else
+            {
+                return View("Page1");
+            }
         }
         public IActionResult Page1()
         {
@@ -19,6 +29,7 @@ namespace _7_1.Areas.Help.Controllers
         }
         public IActionResult Page2()
         {
+            
             return View();
         }
         public IActionResult Page3()
