@@ -1,0 +1,37 @@
+﻿@model Trip
+@{ 
+    ViewBag.Title = "Add Destination and Dates";
+}
+
+<h2>@ViewBag.Title</h2>
+<form asp-action="AddTrip" method="post" id="Page1">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Destination">Destination</label>
+        <input asp-for="Destination" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Accommodation">Accommodation</label>
+        <input asp-for="Accommodation" class="form-control" />
+
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate">Start Date</label>
+        <input asp-for="StartDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate">End Date</label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-inline">
+        <button asp-action="Add" asp-route-id="Page2" class="btn btn-dark">Next</button>
+        <button asp-controller="Home" asp-action="Index"
+                class="btn btn-outline-dark">
+            Clear
+        </button>
+
+    </div>
+
+</form>
+
