@@ -12,6 +12,10 @@ namespace FrequentQuestions.Controllers
         {
             this.context = context;
         }
+        [Route("topic/{topic}/category/{category}")]
+        [Route("topic/{topic}")]
+        [Route("category/{category}")]
+        [Route("/")]
 
        
         public IActionResult Index(string topic, string category)
