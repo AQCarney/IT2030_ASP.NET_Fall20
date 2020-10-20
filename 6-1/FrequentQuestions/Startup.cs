@@ -40,6 +40,20 @@ namespace FrequentQuestions
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute(
+                    name: "both",
+                    pattern: "{controller=Home}/{action=Index}/topic/{topic}/category/{category}");
+
+                endpoints.MapControllerRoute(
+                    name: "topic",
+                    pattern: "{controller=Home}/{action=Index}/topic/{topic}");
+
+                endpoints.MapControllerRoute(
+                 name: "category",
+                 pattern: "{controller=Home}/{action=Index}/category/{category}");
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");

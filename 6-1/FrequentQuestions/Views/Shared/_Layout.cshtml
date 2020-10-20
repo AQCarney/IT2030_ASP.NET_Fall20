@@ -8,36 +8,12 @@
 </head>
 <body>
     <div class="container">
-        <header class="jumbotron bg-info">
-            <h1 class="text-center text-white">Frequently Asked Questions</h1>
-
+        <header class="bg-info text-center text-white p-4 mb-4">
+            <h1>Frequently Asked Questions</h1>
         </header>
-        <nav class="navbar navbar-expand-sm navbar-toggler navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">All FAQs</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Bootstrap</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">C#</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">JavaScript</a>
-                        </li>
-                    </ul>
-                </div>
- 
-            </div>
-        </nav>
-
-
-        @RenderBody()
-    </div>
+        <main role="main">
+            @RenderBody()
+        </main>
+        </div>
 </body>
 </html>

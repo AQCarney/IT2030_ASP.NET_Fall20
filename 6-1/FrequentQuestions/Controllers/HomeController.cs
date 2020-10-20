@@ -8,17 +8,31 @@ namespace FrequentQuestions.Controllers
     public class HomeController : Controller
     {
         private QuestionContext context { get; set; }
-        public HomeController(QuestionContext ctx)
+        public HomeController(QuestionContext context)
         {
-            context = ctx;
+            this.context = context;
         }
 
-        public IActionResult Index()
+       
+        public IActionResult Index(string topic, string category)
         {
-            var questions = context.Questions.Include(q => q.Topic)
-                .Include(q => q.Category)                
-                .OrderBy(q => q.QuestionId).ToList();
-            return View(questions);
+            ViewBag.Topics = context.Topics.OrderBy(t => t.TopicName).ToList();
+            ViewBag.Categories = context.Categories.OrderBy(c => c.CategoryName).ToList();
+            ViewBag.SelectedTopic = topic;
+
+            IQueryable<Question> questions = context.Questions
+            .Include(f => f.Topic)
+            .Include(f => f.Category)            
+            .OrderBy(f => f.Faq);
+            if (!string.IsNullOrEmpty(topic))
+            {
+                questions = questions.Where(f => f.TopicId == topic); 
+            }
+            if (!string.IsNullOrEmpty(category)) 
+            {
+                questions = questions.Where(f => f.CategoryId == category);
+             }
+            return View(questions.ToList());
         }
 
     }

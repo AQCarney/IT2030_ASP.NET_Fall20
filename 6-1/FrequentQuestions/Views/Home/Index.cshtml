@@ -1,25 +1,65 @@
-﻿@model List<Question>
+﻿@model IEnumerable<Question>
 @{ 
     ViewBag.Title = "FAQs";
 }
 
-
-<a asp-controller="Question"></a>
-<table class="table ">
-    <thead>
-
-    </thead>
-    <tbody>
-        @foreach (var question in Model)
-        {
-        <tr>
-            <td>@question.Faq @question.Answer</td>
+<div class="row">
+    <div class="col offset-3">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" asp-action="Index" asp-route-topic="" asp-route-category="">All FAQs</a>
             
-        </tr>
-        <tr>
-           <td>@question.Topic.TopicName @question.Category.CategoryName</td>
-          
-        </tr>
-        }
-    </tbody>
-</table>
+            <button class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    @foreach (Topic topic in ViewBag.Topics)
+                    {
+                        <a asp-action="Index" asp-route-topic="@topic.TopicId" class="nav-item nav-link">@topic.TopicName</a>
+                    }
+
+                </div>
+
+            </nav>
+
+        </nav>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <ul class="list-group mb-3">
+            @foreach(Category category in ViewBag.Categories)
+            {
+                <li class="list-group-item">
+                    <a asp-action="Index"
+                       asp-route-topic="@ViewBag.SelectedTopic" asp-route-category="@category.CategoryID">@category.CategoryName</a>
+                </li>
+            }
+        </ul>
+
+    </div>
+    <div class="col">
+        <ul class="list-group">
+            @foreach (Question question in Model)
+            { 
+                <li class="list-group-item">
+                    <div class="row pb-3">
+                        <div class="col">
+                            <strong class="mr-2">@question.Faq</strong>@question.Answer
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col">Topic: @question.Topic.TopicName</div>
+                        <div class="col">Category: @question.Category.CategoryName</div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
