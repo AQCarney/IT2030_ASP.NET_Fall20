@@ -14,15 +14,14 @@ namespace MyTripLog.Controllers
     {
         
         private TripContext context { get; set; }
-        public HomeController(TripContext ctx)
+        public HomeController(TripContext context)
         {
-            context = ctx;
+            this.context = context;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            
-            var trips = context.Trips.OrderBy(m => m.Destination).ToList();
+            List<Trip> trips = context.Trips.OrderBy(t => t.StartDate).ToList();
             return View(trips);
         }
 

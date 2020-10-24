@@ -1,35 +1,25 @@
-﻿@model Trip
+﻿@model TripViewModel
 @{
-    ViewBag.Title = "Add Things to do in ";
+    ViewBag.Title = "Add Trip- Page 3";
+    ViewBag.SubHeader = $"Add Things To Do In {Model.Trip.Destination}";
 }
 
-<h2>Add things to do in  </h2>
-
-
-<form asp-action="AddTrip">
-    <div asp-validation-summary="All" class="text-danger">
-        <div class="form-group">
-            
-            <input asp-for="ThingToDo1" class="form-control" />
-        </div>
-        <div class="form-group">
-            
-            <input asp-for="ThingToDo2" class="form-control" />
-        </div>
-        <div class="form-group">
-           
-            <input asp-for="ThingToDo3" class="form-control" />
-        </div>
+<form asp-action="Add">
+    <input type="hidden" asp-for="PageNumber" />
+    <div class="form-group">
+           <input asp-for="Trip.ThingToDo1" class="form-control" />
+    </div>
+    <div class="form-group">        
+        <input asp-for="Trip.ThingToDo2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input asp-for="Trip.ThingToDo3" class="form-control" />
     </div>
 
+    <div>
+        <button type="submit" class="btn btn-dark">Save</button>
+        <a asp-action="Cancel" class="btn btn-outline-dark">Cancel</a>
 
-    <div class="form-inline">
-        <input type="hidden" asp-for="TripId" />
-        <button asp-action="Add" asp-route-id="Page3" class="btn btn-dark" type="submit">Save</button>
-        <button asp-controller="Home" asp-action="Index"
-                class="btn btn-outline-dark">
-            Clear
-        </button>
-        
     </div>
-    </form>
+
+</form>

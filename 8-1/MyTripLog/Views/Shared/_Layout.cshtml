@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    string message = TempData["message"]?.ToString();
+    string subheader = ViewBag.Subheader;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,10 +14,18 @@
 </head>
 <body>
     <div class="container">
-        <header class="bg-dark text-center text-white p-4 mb-4">
+        <header class="bg-secondary text-center text-white p-4 mb-4">
             <h1>My Trip Log</h1>
         </header>
-        <main role="main" class="pb-3">
+        <main role="main">
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <h2 class="bg-light text-center p-2 mb-1">@message</h2>
+            }
+            @if (!string.IsNullOrEmpty(subheader))
+            {
+                <h2 class="mt-2 mb-2">@subheader</h2>
+            }
             @RenderBody()
         </main>
     </div>

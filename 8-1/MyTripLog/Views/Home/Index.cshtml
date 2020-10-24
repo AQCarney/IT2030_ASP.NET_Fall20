@@ -3,7 +3,7 @@
     ViewBag.Title = "My Trip Log";
 }
 
-<a asp-controller="Trip" asp-action="Add">AddTrip</a>
+<strong><a asp-controller="Trip" asp-action="Add" class="mt-2">AddTrip</a></strong>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -15,21 +15,39 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var trip in Model)
+        @foreach (Trip trip in Model)
         {
         <tr>
             <td>@trip.Destination</td>
-            <td>@trip.StartDate</td>
-            <td>@trip.EndDate</td>
+            <td>@trip.StartDate?.ToShortDateString()</td>
+            <td>@trip.EndDate?.ToShortDateString()</td>
             <td>
-                @trip.Accommodation <br>
-                @trip.AccommodationPhone<br>
-                @trip.AccommodationEmail
+                @if (!string.IsNullOrEmpty(trip.Accommodation))
+                {
+                    <div>@trip.Accommodation</div>
+                    @if (!string.IsNullOrEmpty(trip.AccommodationPhone))
+                    {
+                        <div>Phone: @trip.AccommodationPhone</div>
+                    }
+                    @if (!string.IsNullOrEmpty(trip.AccommodationEmail))
+                    {
+                        <div>Email: @trip.AccommodationEmail</div>
+                    }
+                }
             </td>
             <td>
-                @trip.ThingToDo1<br />
-                @trip.ThingToDo2<br />
-                @trip.ThingToDo3
+                @if (!string.IsNullOrEmpty(trip.ThingToDo1))
+                {
+                    <div>@trip.ThingToDo1</div>
+                }
+                @if (!string.IsNullOrEmpty(trip.ThingToDo2))
+                {
+                    <div>@trip.ThingToDo2</div>
+                }
+                @if (!string.IsNullOrEmpty(trip.ThingToDo3))
+                {
+                    <div>@trip.ThingToDo3</div>
+                }
             </td>
         </tr>
         }
