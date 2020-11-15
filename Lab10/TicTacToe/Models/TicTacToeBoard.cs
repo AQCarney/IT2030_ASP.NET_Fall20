@@ -43,8 +43,7 @@ namespace TicTacToe.Models
                 case true when IsWinner(0, 3, 6, out winningMark):
                 case true when IsWinner(1, 4, 7, out winningMark):
                 case true when IsWinner(2, 5, 8, out winningMark):
-                case true when IsWinner(0, 4, 8, out winningMark):
-                case true when IsWinner(2, 7, 6, out winningMark):
+                case true when IsWinner(0, 4, 8, out winningMark):               
                 case true when IsWinner(2, 4, 6, out winningMark):
                     HasWinner = true;
                     break;
