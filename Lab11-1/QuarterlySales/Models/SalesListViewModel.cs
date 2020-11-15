@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using QuarterlySales.Models;
 
 namespace QuarterlySales.Models
 {
