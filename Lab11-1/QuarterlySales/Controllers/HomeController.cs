@@ -37,7 +37,7 @@ namespace QuarterlySales.Controllers
                 EmployeeId = id
 
             };
-            return View();
+            return View(vm);
         }
         [HttpPost]
         public RedirectToActionResult Index(Employee employee)

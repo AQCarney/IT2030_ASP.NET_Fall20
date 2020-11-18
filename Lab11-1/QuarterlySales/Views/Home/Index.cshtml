@@ -13,7 +13,7 @@
 
         <div class="col-sm-4">
             <select name="EmployeeId" class="form-control"
-                    asp-items="@(new SelectList(Model.Sales, "EmployeeId", "FullName", Model.EmployeeId))">
+                    asp-items="@(new SelectList(Model.Employees, "EmployeeId", "FullName", Model.EmployeeId))">
                 <option value="0">All</option>
 >
             </select>

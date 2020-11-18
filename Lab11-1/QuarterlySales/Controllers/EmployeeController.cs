@@ -14,11 +14,13 @@ namespace QuarterlySales.Controllers
         public EmployeeController(SalesContext ctx) => context = ctx;
 
         public IActionResult Index() => RedirectToAction("Index", "Home");
+        [HttpGet]
         public ViewResult Add()
         {
             ViewBag.Employees = context.Employees.OrderBy(e => e.LastName).ThenBy(e => e.FirstName).ToList();
             return View();
         }
+        [HttpPost]
         public IActionResult Add(Employee employee)
         {
             string message = Validate.CheckEmployee(context, employee);
