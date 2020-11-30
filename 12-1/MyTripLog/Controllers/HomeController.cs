@@ -12,22 +12,22 @@ namespace MyTripLog.Controllers
 {
     public class HomeController : Controller
     {
-        
-        private TripContext context { get; set; }
-        public HomeController(TripContext context)
-        {
-            this.context = context;
-        }
+        public Repository<Trip> data { get; set; }
+
+        public HomeController(TripContext context) => data = new Repository<Trip>(context);
+
 
         public ViewResult Index()
         {
-            List<Trip> trips = context.Trips.OrderBy(t => t.StartDate).ToList();
+            var options = new QueryOptions<Trip>
+            {
+                Includes = "Destination, Accommodation, TripActivities.Activiy",
+                OrderBy = t => t.StartDate
+            };
+            var trips = data.List(options);
             return View(trips);
-        }
-
-
-
-      
+ 
+        }     
      
     }
 }
