@@ -11,7 +11,7 @@ namespace MyTripLog.Models
     {
         public void Configure(EntityTypeBuilder<TripActivity> entity)
         {
-            entity.HasKey(ta => new{ ta.Trip, ta.ActivityId });
+            entity.HasKey(ta => new{ ta.TripId, ta.ActivityId });
 
             entity.HasOne(ta => ta.Trip)
                 .WithMany(t => t.TripActivities)

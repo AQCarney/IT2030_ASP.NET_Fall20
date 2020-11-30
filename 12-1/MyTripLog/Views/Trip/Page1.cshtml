@@ -9,28 +9,35 @@
 <form asp-action="Add">
     <input type="hidden" asp-for="PageNumber" />
     <div class="form-group">
-        <label asp-for="Trip.Destination">Destination</label>
-        <input asp-for="Trip.Destination" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Trip.Accommodation">Accommodation</label>
-        <input asp-for="Trip.Accommodation" class="form-control" />
+        <label asp-for="Trip.DestinationId">Destination</label>
+        <a asp-action="Index" asp-controller="Manage" class="ml-4">Manage destinations</a>
+        <select asp-for="Trip.DestinationId" class="form-control"
+                asp-items="@(new SelectList(Model.Destinations, "DestinationId", "Name"))">
+            <option value="0"></option>
+        </select>
 
     </div>
     <div class="form-group">
-        <label asp-for="Trip.StartDate">Start Date</label>
-        <input asp-for="Trip.StartDate" type="date" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Trip.EndDate">End Date</label>
-        <input asp-for="Trip.EndDate" type="date" class="form-control" />
-    </div>
+        <label asp-for="Trip.AccommodationId">Accommodations</label>
+        <a asp-action="Index" asp-controller="Manage" class="ml-4">Manage accommmodations</a>
+        <select asp-for="Trip.AccommodationId" class="form-control"
+                asp-items="@(new SelectList(Model.Accommodations, "AccommodationId", "Name"))">
+            <option value="0"></option>
+        </select>
+        <div class="form-group">
+            <label asp-for="Trip.StartDate">Start Date</label>
+            <input asp-for="Trip.StartDate" type="date" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Trip.EndDate">End Date</label>
+            <input asp-for="Trip.EndDate" type="date" class="form-control" />
+        </div>
 
-    <div>
-        <button type="submit" class="btn btn-dark">Next</button>
-        <a asp-action="Cancel" class="btn btn-outline-dark">Cancel</a>
+        <div>
+            <button type="submit" class="btn btn-dark">Next</button>
+            <a asp-action="Cancel" class="btn btn-outline-dark">Cancel</a>
 
-    </div>
+        </div>
 
 </form>
 

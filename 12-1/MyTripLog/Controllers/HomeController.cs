@@ -21,7 +21,7 @@ namespace MyTripLog.Controllers
         {
             var options = new QueryOptions<Trip>
             {
-                Includes = "Destination, Accommodation, TripActivities.Activiy",
+                Includes = "Destination, Accommodation, TripActivities.Activity",
                 OrderBy = t => t.StartDate
             };
             var trips = data.List(options);

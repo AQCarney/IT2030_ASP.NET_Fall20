@@ -12,42 +12,41 @@
             <th>End Date</th>
             <th>Accommodations</th>
             <th>Things to Do</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (Trip trip in Model)
         {
         <tr>
-            <td>@trip.Destination</td>
+            <td>@trip.Destination.Name</td>
             <td>@trip.StartDate?.ToShortDateString()</td>
             <td>@trip.EndDate?.ToShortDateString()</td>
             <td>
-                @if (!string.IsNullOrEmpty(trip.Accommodation))
+                @if (trip.Accommodation != null )
                 {
-                    <div>@trip.Accommodation</div>
-                    @if (!string.IsNullOrEmpty(trip.AccommodationPhone))
+                    <div>@trip.Accommodation.Name</div>
+                    @if (!string.IsNullOrEmpty(trip.Accommodation.Phone))
                     {
-                        <div>Phone: @trip.AccommodationPhone</div>
+                        <div>Phone: @trip.Accommodation.Phone</div>
                     }
-                    @if (!string.IsNullOrEmpty(trip.AccommodationEmail))
+                    @if (!string.IsNullOrEmpty(trip.Accommodation.Email))
                     {
-                        <div>Email: @trip.AccommodationEmail</div>
+                        <div>Email: @trip.Accommodation.Email</div>
                     }
                 }
             </td>
             <td>
-                @if (!string.IsNullOrEmpty(trip.ThingToDo1))
+                @foreach(TripActivity ta in trip.TripActivities)
                 {
-                    <div>@trip.ThingToDo1</div>
+                    <div>@ta.Activity.Name</div>
                 }
-                @if (!string.IsNullOrEmpty(trip.ThingToDo2))
-                {
-                    <div>@trip.ThingToDo2</div>
-                }
-                @if (!string.IsNullOrEmpty(trip.ThingToDo3))
-                {
-                    <div>@trip.ThingToDo3</div>
-                }
+            </td>
+            <td>
+                <form asp-action="Delete" asp-controller="Trip">
+                    <button type="submit" name="id" value="@trip.TripId"
+                            class="btn btn-primary">Delete</button>
+                </form>
             </td>
         </tr>
         }
