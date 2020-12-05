@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace QuarterlySales.Models.Validation
+namespace QuarterlySales.Models
 {
     public class PastDateAtrribute : ValidationAttribute
     {

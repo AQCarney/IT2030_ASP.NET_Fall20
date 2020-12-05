@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuarterlySales.Models.Validation
+namespace QuarterlySales.Models
 {
     public class Validate
     {

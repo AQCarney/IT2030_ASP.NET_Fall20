@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using QuarterlySales.Models;
-using QuarterlySales.Models.Validation;
 
 namespace QuarterlySales.Controllers
 {

@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QuarterlySales.Models;
 using Microsoft.AspNetCore.Mvc;
-using QuarterlySales.Models.Validation;
 using Microsoft.EntityFrameworkCore;
 
 namespace QuarterlySales
@@ -27,7 +26,10 @@ namespace QuarterlySales
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddControllersWithViews();
+
 
             services.AddDbContext<SalesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SalesContext")));
@@ -48,6 +50,7 @@ namespace QuarterlySales
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
@@ -55,6 +58,7 @@ namespace QuarterlySales
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
