@@ -9,8 +9,8 @@ namespace QuarterlySales.Controllers
 {
     public class ValidationController : Controller
     {
-        private SalesContext context { get; set; }
-        public ValidationController(SalesContext ctx) => context = ctx;
+        private UnitOfWork data { get; set; }
+        public ValidationController(SalesContext ctx) => this.data = new UnitOfWork(ctx);
         public JsonResult CheckEmployee(string firstName, string lastName, DateTime dateOfBirth)
         {
             Employee employee = new Employee
@@ -19,7 +19,7 @@ namespace QuarterlySales.Controllers
                 LastName = lastName,
                 DateOfBirth = dateOfBirth
             };
-            string message = Validate.CheckEmployee(context, employee);
+            string message = Validate.CheckEmployee(data.Employees, employee);
             if (string.IsNullOrEmpty(message))
             {
                 return Json(true);
@@ -35,7 +35,7 @@ namespace QuarterlySales.Controllers
                 LastName = lastName,
                 DateOfBirth = dateOfBirth
             };
-            string message = Validate.CheckManagerEmployeeMatch(context, employee);
+            string message = Validate.CheckManagerEmployeeMatch(data.Employees, employee);
             if (string.IsNullOrEmpty(message))
             {
                 return Json(true);
@@ -51,7 +51,7 @@ namespace QuarterlySales.Controllers
                 Year = year,
                 Quarter = quarter
             };
-            string message = Validate.CheckSales(context, sale);
+            string message = Validate.CheckSales(data, sale);
             if (string.IsNullOrEmpty(message))
             {
                 return Json(true);
