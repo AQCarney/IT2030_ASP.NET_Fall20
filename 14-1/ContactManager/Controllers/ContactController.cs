@@ -27,7 +27,7 @@ namespace ContactManager.Controllers
             return View(contact);
         }
         [HttpGet]
-        public IActionResult Add()
+        public ViewResult Add()
         {
             ViewBag.Action = "Add";
             ViewBag.Categories = data.Categories.List(new QueryOptions<Category> { OrderBy = c => c.Name });
