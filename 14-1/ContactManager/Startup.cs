@@ -22,17 +22,15 @@ namespace ContactManager
                 options.LowercaseUrls = true;
                 options.AppendTrailingSlash = true;
             });
-            services.AddMemoryCache();
-            services.AddSession();
-
 
             services.AddControllersWithViews();
+
             services.AddDbContext<ContactContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ContactContext")));
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ContactContext")));
 
-            services.AddHttpContextAccessor();
-            services.AddTransient<>
-
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         }
 
         // Use this method to configure the HTTP request pipeline.

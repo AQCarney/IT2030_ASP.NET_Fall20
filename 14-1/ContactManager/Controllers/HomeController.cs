@@ -10,15 +10,21 @@ namespace ContactManager.Controllers
 {
     public class HomeController : Controller
     {
-        private ContactContext context { get; set; }
-        public HomeController(ContactContext ctx)
+        public IRepository<Contact> data { get; set; }
+        public HomeController(IRepository<Contact> rep)
         {
-            context = ctx;
+            this.data = rep;
         }
+
         public IActionResult Index()
         {
-            var contacts = context.Contacts.Include(m => m.Category)
-                .OrderBy(m => m.Fname).ToList();
+            var options = new QueryOptions<Contact>
+            {
+                Includes = "Category",
+                OrderBy = c => c.Fname
+            };
+
+            var contacts = data.List(options);
             return View(contacts);
         }
     }

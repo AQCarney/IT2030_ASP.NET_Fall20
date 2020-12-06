@@ -3,70 +3,93 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ContactManager.Models;
 
 namespace ContactManager.Controllers
 {
     public class ContactController : Controller
     {
-        private ContactContext context { get; set; }
-        public ContactController(ContactContext ctx)
+        private IUnitOfWork data { get; set; }
+        public ContactController(IUnitOfWork rep)
         {
-            context = ctx;
+            this.data = rep;
         }
-        [HttpGet]
         public IActionResult Details(int id)
         {
-            ViewBag.Action = "Details";
-            ViewBag.Categories = context.Categories.OrderBy(g => g.Name).ToList();
-            var contact = context.Contacts.Find(id);
+            var options = new QueryOptions<Contact>
+            {
+                Includes = "Category",
+                Where = c => c.ContactId == id
+            };
+
+            var contact = data.Contacts.Get(options);
             return View(contact);
         }
         [HttpGet]
         public IActionResult Add()
         {
             ViewBag.Action = "Add";
-            ViewBag.Categories = context.Categories.OrderBy(g => g.Name).ToList();
+            ViewBag.Categories = data.Categories.List(new QueryOptions<Category> { OrderBy = c => c.Name });
             return View("Edit", new Contact());
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
-            ViewBag.Categories = context.Categories.OrderBy(g => g.Name).ToList();
-            var contact = context.Contacts.Find(id);
-            return View(contact);
+            ViewBag.Categories = data.Categories.List(new QueryOptions<Category> { OrderBy = c => c.Name });
+            var options = new QueryOptions<Contact>
+            {
+                Includes = "Category",
+                Where = c => c.ContactId == id
+            };
+            var contact = data.Contacts.Get(options);
+            return View("Edit", contact);
         }
         [HttpPost]
         public IActionResult Edit(Contact contact)
         {
+            string action = (contact.ContactId == 0) ? "Add" : "Edit";
             if (ModelState.IsValid)
             {
-                if (contact.ContactId == 0)
-                    context.Contacts.Add(contact);
+                if (action == "Add")
+                {
+                    
+                    data.Contacts.Insert(contact);
+                    
+                }
                 else
-                    context.Contacts.Update(contact);
-                context.SaveChanges();
+                {
+                    data.Contacts.Update(contact);
+                }
+
+                data.Save();
                 return RedirectToAction("Index", "Home");
 
             }
             else
             {
-                ViewBag.Action = (contact.ContactId == 0) ? "Add" : "Edit";
+                ViewBag.Action = action;
+                ViewBag.Categories = data.Categories.List(new QueryOptions<Category> { OrderBy = c => c.Name });
                 return View(contact);
             }
         }
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var contact = context.Contacts.Find(id);
+            var options = new QueryOptions<Contact>
+            {
+                Includes = "Category",
+                Where = c => c.ContactId == id
+            };
+            var contact = data.Contacts.Get(options);
             return View(contact);
         }
         [HttpPost]
         public IActionResult Delete(Contact contact)
         {
-            context.Contacts.Remove(contact);
-            context.SaveChanges();
+            data.Contacts.Delete(contact);
+            data.Save();
             return RedirectToAction("Index", "Home");
         }
     }
