@@ -32,7 +32,7 @@ namespace QuarterlySales.Models
                 {
                     this.sales = new Repository<Sales>(this.context);
                 }
-                return Sales;
+                return sales;
             }
         }
         public void Save() => context.SaveChanges();
