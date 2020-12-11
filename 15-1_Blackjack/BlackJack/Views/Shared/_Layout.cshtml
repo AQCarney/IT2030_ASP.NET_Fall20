@@ -16,10 +16,7 @@
         </header>
 
         <main role="main">
-            @if (TempData.Keys.Contains("message"))
-            {
-                <h4 class="bg-@TempData["background"] text-white p-2">@TempData["message"]</h4>
-            }
+            <my-temp-message/>
             @RenderBody()
         </main>
 
